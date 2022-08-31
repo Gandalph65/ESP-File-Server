@@ -16,19 +16,30 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   See more at http://dsbird.org.uk
 */
-
+#include <Arduino.h>
+#include <ArduinoOTA.h>
 #include "credentials.h"
-#include <SPIFFS.h>            // Built-in
-#include <WiFi.h>              // Built-in
-#include <ESPmDNS.h>           // Built-in
-#include <AsyncTCP.h>          // https://github.com/me-no-dev/AsyncTCP
-#include <ESPAsyncWebServer.h> // https://github.com/me-no-dev/ESPAsyncWebServer
-#include "esp_system.h"        // Built-in
-#include "esp_spi_flash.h"     // Built-in 
-#include "esp_wifi_types.h"    // Built-in
-#include "esp_bt.h"            // Built-in
+#include <Littlefs.h>
+//#include <SPIFFS.h>          // Built-in
+#ifdef ESP32
+  #include <WiFi.h>              // Built-in
+  #include <ESPmDNS.h>           // Built-in
+  #include <AsyncTCP.h>          // https://github.com/me-no-dev/AsyncTCP
+  #include <ESPAsyncWebServer.h> // https://github.com/me-no-dev/ESPAsyncWebServer
+  #include "esp_system.h"        // Built-in
+  #include "esp_spi_flash.h"     // Built-in 
+  #include "esp_wifi_types.h"    // Built-in
+  #include "esp_bt.h"            // Built-in
+#elif defined(ESP8266)
+  #include <ESP8266WiFi.h>
+  #include <ESP8266mDNS.h>
+  #include <ESPAsyncTCP.h>
+  #include "esp_system.h"        // Built-in
+  #include "esp_spi_flash.h"     // Built-in 
+  #include "esp_wifi_types.h"    // Built-in
+  #include "esp_bt.h"            // Built-in
+#endif
 #define  FS SPIFFS             // In preparation for the introduction of LITTLFS see https://github.com/lorol/LITTLEFS replace SPIFFS with LITTLEFS
-
 AsyncWebServer server(80);
 
 //################  VERSION  ###########################################
