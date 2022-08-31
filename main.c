@@ -17,7 +17,8 @@
   See more at http://dsbird.org.uk
 */
 #include <Arduino.h>
-#include <ArduinoOTA.h>
+
+//#include <ArduinoOTA.h>
 #include "credentials.h"
 #include <FS.h>
 #include <Littlefs.h>
