@@ -47,6 +47,7 @@
   //#include "esp_bt.h"            // Built-in
 #endif
 #define  MYFS LittleFS             // In preparation for the introduction of LITTLFS see https://github.com/lorol/LITTLEFS replace SPIFFS with LITTLEFS
+#define ISSPIFFS SPIFFS
 AsyncWebServer server(80);
 //Arduino
 
@@ -597,7 +598,7 @@ void Display_System_Info() {
   webpage += "<h4>Filing System</h4>";
   webpage += "<table class='center'>";
   webpage += "<tr><th>Total Space</th><th>Used Space</th><th>Free Space</th><th>Number of Files</th></tr>";
-  #if (MYFS==SPIFFS)
+  #if (MYFS==ISSPIFFS)
   webpage += "<tr><td>" + ConvBinUnits(MYFS.totalBytes(), 1) + "</td>";
   webpage += "<td>" + ConvBinUnits(MYFS.usedBytes(), 1) + "</td>";
   webpage += "<td>" + ConvBinUnits(MYFS.totalBytes() - MYFS.usedBytes(), 1) + "</td>";
