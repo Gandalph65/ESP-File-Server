@@ -1,0 +1,22 @@
+#pragma once
+#include <Arduino.h>
+#include <FS.h>
+#include <LittleFS.h>
+#if (ESP8266)
+  #include <ESP8266WiFi.h>
+  #include <ESP8266mDNS.h>
+  #include <ESPAsyncTCP.h>
+  #include <ESPAsyncWebServer.h> // https://github.com/me-no-dev/ESPAsyncWebServer
+  #include <Esp.h>
+  #include <FreeStack.h>
+  #include <SdFat.h>
+#elif (ESP32)
+  #include <WiFi.h>              // Built-in
+  #include <ESPmDNS.h>           // Built-in
+  #include <AsyncTCP.h>          // https://github.com/me-no-dev/AsyncTCP
+  #include <ESPAsyncWebServer.h> // https://github.com/me-no-dev/ESPAsyncWebServer
+  #include "esp_system.h"        // Built-in
+  #include "esp_spi_flash.h"     // Built-in 
+  #include "esp_wifi_types.h"    // Built-in
+  #include "esp_bt.h"            // Built-in
+#endif
